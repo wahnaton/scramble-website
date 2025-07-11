@@ -4,16 +4,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen pt-2 sm:pt-4 pb-20 font-[family-name:var(--font-geist-sans)]">
-      <header>
-        <Image
-          src="/scramble-logo.png"
-          alt="Scramble logo"
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-2/3 md:w-[309px] h-auto"
-          priority
-        />
+      <header className="mb-4">
+        <h1 className="text-6xl md:text-7xl font-black font-['SF_Pro_Rounded'] text-white">
+          Scramble
+        </h1>
       </header>
       <main className="flex flex-col gap-6 row-start-2 items-center text-center">
         <Image
