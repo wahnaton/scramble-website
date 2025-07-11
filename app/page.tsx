@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen pt-2 sm:pt-4 pb-20 font-[family-name:var(--font-geist-sans)]">
       <header className="mb-4">
-        <h1 className="text-6xl md:text-7xl font-black font-['SF_Pro_Rounded'] text-white">
+        <h1 className="text-6xl md:text-7xl font-black font-['SF_Pro_Rounded','SF_Pro',-apple-system,system-ui,sans-serif] text-white drop-shadow-[0_5px_4px_rgba(0,0,0,0.25)]">
           Scramble
         </h1>
       </header>
