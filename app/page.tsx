@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex flex-col items-center gap-4">
           <p className="text-lg text-center font-semibold text-gray-300">Available for iPhone</p>
           <a
-            href="https://apps.apple.com/app/idXXXXXXXX"
+            href="https://apps.apple.com/app/id6748549424"
             target="_blank"
             rel="noopener noreferrer"
           >
