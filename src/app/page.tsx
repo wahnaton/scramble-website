@@ -7,10 +7,19 @@ export default function Home() {
     <>
       <Head>
         <title>Scramble – Fast-Paced Word Game for iPhone</title>
-        <meta name="description" content="Scramble is a thrilling word game for iPhone. Swipe, tap, and scroll your way to five-letter victory in seconds. Download now!" />
+        <meta
+          name="description"
+          content="Scramble is a thrilling word game for iPhone. Swipe, tap, and scroll your way to five-letter victory in seconds. Download now!"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Scramble – Fast-Paced Word Game for iPhone" />
-        <meta property="og:description" content="Scramble is a thrilling word game for iPhone. Swipe, tap, and scroll your way to five-letter victory in seconds." />
+        <meta
+          property="og:title"
+          content="Scramble – Fast-Paced Word Game for iPhone"
+        />
+        <meta
+          property="og:description"
+          content="Scramble is a thrilling word game for iPhone. Swipe, tap, and scroll your way to five-letter victory in seconds."
+        />
         <meta property="og:image" content="/scramble3.png" />
         <meta property="og:url" content="https://playscramblegame.com" />
         <meta name="twitter:card" content="summary_large_image" />
@@ -31,7 +40,9 @@ export default function Home() {
             className="w-full sm:w-11/12 md:w-4/5 lg:w-2/3 object-contain mx-auto"
           />
           <div className="flex flex-col items-center gap-4">
-            <p className="text-lg text-center font-semibold text-gray-300">Available for iPhone</p>
+            <p className="text-lg text-center font-semibold text-gray-300">
+              Available for iPhone
+            </p>
             <a
               href="https://apps.apple.com/app/id6748549424"
               target="_blank"
@@ -48,11 +59,20 @@ export default function Home() {
         </main>
         <footer className="mt-10 text-center text-sm text-gray-400 mb-6 px-4">
           <p className="space-x-2">
-              <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
-              <span>•</span>
-              <Link href="/terms" className="hover:underline">Terms of Service</Link>
-              <span>•</span>
-              <a href="mailto:support@playscramblegame.com" className="hover:underline">Support</a>
+            <Link href="/privacy" className="hover:underline">
+              Privacy Policy
+            </Link>
+            <span>•</span>
+            <Link href="/terms" className="hover:underline">
+              Terms of Service
+            </Link>
+            <span>•</span>
+            <a
+              href="mailto:support@playscramblegame.com"
+              className="hover:underline"
+            >
+              Support
+            </a>
           </p>
           <p className="mt-2">© 2025 Play Scamble Game</p>
         </footer>

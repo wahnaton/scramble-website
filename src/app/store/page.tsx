@@ -1,5 +1,3 @@
 export default function StorePage() {
-  return (
-    <main/>
-  )
+  return <main />;
 }
