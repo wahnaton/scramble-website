@@ -5,5 +5,9 @@ export default function StoreLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <StoreLayoutClient>{children}</StoreLayoutClient>;
+  return (
+    <div className="bg-white min-h-screen">
+      <StoreLayoutClient>{children}</StoreLayoutClient>
+    </div>
+  );
 }
