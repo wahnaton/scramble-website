@@ -78,3 +78,4 @@ src/
 - **Quotes**: Single quotes for strings
 - **Trailing commas**: Always in multiline structures
 - **Principles**: YAGNI, SOLID, Idiomatic Next.js
+- **Style**: Tailwind CSS

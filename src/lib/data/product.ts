@@ -44,3 +44,23 @@ export const listProducts = async ({
       };
     });
 };
+
+export const retrieveProductByHandle = async (
+  handle: string,
+  queryParams?: HttpTypes.StoreProductParams,
+): Promise<HttpTypes.StoreProduct | null> => {
+  return sdk.client
+    .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
+      `/store/products`,
+      {
+        method: "GET",
+        query: {
+          handle,
+          limit: 1,
+          ...queryParams,
+        },
+        cache: "force-cache",
+      },
+    )
+    .then(({ products }) => products?.[0] ?? null);
+};
