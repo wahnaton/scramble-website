@@ -23,5 +23,9 @@ body {
 }
 
 /* Store page horizontal scrollbar: light gray (uses bg-100 token) */
-.scroll-container { scrollbar-color: var(--color-bg-100) transparent; }
-.scroll-container::-webkit-scrollbar-thumb { background-color: var(--color-bg-100); }
+.scroll-container {
+  scrollbar-color: var(--color-bg-100) transparent;
+}
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--color-bg-100);
+}

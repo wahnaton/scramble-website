@@ -7,9 +7,8 @@ export default async function StorePage() {
     .catch(() => []);
 
   // For design preview: if only one product exists, repeat it 5 times
-  const renderedProducts = products.length === 1
-    ? Array(6).fill(products[0])
-    : products
+  const renderedProducts =
+    products.length === 1 ? Array(6).fill(products[0]) : products;
 
   return (
     <main className="m-12">

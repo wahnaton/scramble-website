@@ -39,7 +39,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         )
       ) : null}
       {product.handle ? (
-        <Link href={`/store/products/${product.handle}`} className="text-left block hover:underline">
+        <Link
+          href={`/store/products/${product.handle}`}
+          className="text-left block hover:underline"
+        >
           {product.title}
         </Link>
       ) : (
