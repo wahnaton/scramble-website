@@ -6,14 +6,19 @@ export default async function StorePage() {
     .then(({ response }) => response.products)
     .catch(() => []);
 
+  // For design preview: if only one product exists, repeat it 5 times
+  const renderedProducts = products.length === 1
+    ? Array(6).fill(products[0])
+    : products
+
   return (
-    <main>
+    <main className="m-12">
       <h2 className="text-center text-black text-4xl mt-10 mb-4 md:mb-10">
         Best Sellers
       </h2>
-      <div className="scroll-container text-black flex md:grid md:grid-cols-4 lg:grid-cols-5 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory px-4">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+      <div className="scroll-container text-black flex gap-4 overflow-x-auto snap-x snap-mandatory pl-6 pr-4">
+        {renderedProducts.map((product, i) => (
+          <ProductCard key={`${product.id}-${i}`} product={product} />
         ))}
       </div>
     </main>

@@ -52,6 +52,9 @@ src/
 
 ```
 
+### API Examples
+See top-level /examples folder for example api requests and responses
+
 ### Key Implementation Details
 
 **Type Safety:**
