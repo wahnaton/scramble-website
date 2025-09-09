@@ -26,7 +26,8 @@ export const listProducts = async ({
         query: {
           limit,
           offset,
-          fields: "*variants.calculated_price,+metadata,+tags",
+          fields:
+            "*variants.calculated_price,+variants.options,+variants.options.option,+metadata,+tags",
           ...queryParams,
         },
         cache: "force-cache",
@@ -58,6 +59,10 @@ export const retrieveProductByHandle = async (
         query: {
           handle,
           limit: 1,
+          // Ensure we retrieve metadata and variant option details
+          // so that utilities like getProductColorSwatches can work
+          fields:
+            "*variants.calculated_price,+variants.options,+variants.options.option,+metadata,+tags",
           ...queryParams,
         },
         cache: "force-cache",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HttpTypes } from "@medusajs/types";
 import { formatPrice, getCheapestPrice } from "@/src/lib/utils/price-util";
+import { getProductColorSwatches } from "@/src/lib/utils/product-colors";
 
 type ProductCardProps = {
   product: HttpTypes.StoreProduct;
@@ -9,6 +10,7 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const cheapest = getCheapestPrice(product);
+  const colors = getProductColorSwatches(product);
 
   return (
     <div className="group flex flex-col h-full flex-none basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 snap-start mb-2">
@@ -51,6 +53,17 @@ export default function ProductCard({ product }: ProductCardProps) {
       ) : (
         <p className="text-left">{product.title}</p>
       )}
+      {colors.length > 0 ? (
+        <div className="flex gap-2 mt-1 mb-1">
+          {colors.map((hex, i) => (
+            <span
+              key={`${hex}-${i}`}
+              className="inline-block size-7 rounded-full border border-gray-300 cursor-pointer"
+              style={{ backgroundColor: hex }}
+            />
+          ))}
+        </div>
+      ) : null}
       <p className="text-left text-sm text-gray-600">
         {formatPrice(cheapest.amount, cheapest.currency_code)}
       </p>
