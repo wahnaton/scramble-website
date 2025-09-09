@@ -26,6 +26,7 @@ export const listProducts = async ({
         query: {
           limit,
           offset,
+          fields: "*variants.calculated_price,+metadata,+tags",
           ...queryParams,
         },
         cache: "force-cache",
