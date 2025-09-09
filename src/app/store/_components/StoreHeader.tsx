@@ -16,13 +16,13 @@ export function StoreHeader({
 }: StoreHeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white">
-      <div className="h-14 flex items-center justify-center p-4">
+      <div className="h-14 flex items-center justify-start md:justify-center p-4">
         <Link href="/store">
-          <h1 className="text-3xl font-black text-black font-['SF_Pro_Rounded','SF_Pro',-apple-system,system-ui,sans-serif]">
+          <h1 className="text-2xl md:text-3xl font-black text-black font-['SF_Pro_Rounded','SF_Pro',-apple-system,system-ui,sans-serif]">
             Scramble Store
           </h1>
         </Link>
-        <div className="absolute right-4 text-black">
+        <div className="absolute right-2 md:right-4 text-black">
           <button
             aria-label="Search"
             className="p-2 cursor-pointer"
