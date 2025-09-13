@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import { retrieveProductByHandle } from "@/src/lib/data/product";
 import { getProductColorSwatches } from "@/src/lib/utils/product-colors";
 import { getProductSizes } from "@/src/lib/utils/product-sizes";
+import { SizeSelector } from "@/src/app/store/_components/SizeSelector";
+import { ColorSelector } from "@/src/app/store/_components/ColorSelector";
+import { AddToCartButton } from "@/src/app/store/_components/AddToCartButton";
 
 type PageProps = {
   params: Promise<{ handle: string }>;
@@ -50,33 +53,18 @@ export default async function ProductPage({ params }: PageProps) {
 
           <p className="text-md mt-4">Color: </p>
 
-          {colors.length > 0 ? (
-            <div className="flex gap-4 mt-2">
-              {colors.map((hex, i) => (
-                <span
-                  key={`${hex}-${i}`}
-                  className="inline-block size-8 rounded-full transition-transform duration-200 ease-out hover:scale-110 cursor-pointer"
-                  style={{ backgroundColor: hex }}
-                />
-              ))}
-            </div>
-          ) : null}
+          {colors.length > 0 ? <ColorSelector colors={colors} /> : null}
 
           {sizes.length > 0 ? (
             <>
               <p className="text-md mt-4">Size: </p>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {sizes.map((size) => (
-                  <span
-                    key={size}
-                    className="inline-flex w-14 h-9 items-center justify-center border border-black bg-white text-black text-sm transition-transform duration-100 ease-out hover:scale-110 cursor-pointer"
-                  >
-                    {size}
-                  </span>
-                ))}
-              </div>
+              <SizeSelector sizes={sizes} />
             </>
           ) : null}
+
+          <div className="mt-8">
+            <AddToCartButton />
+          </div>
         </div>
       </div>
     </main>
