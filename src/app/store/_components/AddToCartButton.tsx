@@ -9,7 +9,7 @@ export function AddToCartButton() {
     <button
       type="button"
       onClick={openCart}
-      className="w-full rounded-full bg-black px-6 py-3 text-white cursor-pointer hover:opacity-90"
+      className="w-full rounded-full bg-black px-6 py-3 text-white cursor-pointer hover:opacity-70"
     >
       Add To Cart
     </button>
