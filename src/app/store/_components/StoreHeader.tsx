@@ -6,13 +6,13 @@ import {
 } from "@heroicons/react/24/outline";
 
 type StoreHeaderProps = {
-  onToggleSearch: () => void;
-  onToggleCart: () => void;
+  searchPopoverId: string;
+  cartPopoverId: string;
 };
 
 export function StoreHeader({
-  onToggleSearch,
-  onToggleCart,
+  searchPopoverId,
+  cartPopoverId,
 }: StoreHeaderProps) {
   return (
     <header className="sticky top-0 z-50 bg-white">
@@ -26,14 +26,18 @@ export function StoreHeader({
           <button
             aria-label="Search"
             className="p-2 cursor-pointer"
-            onClick={onToggleSearch}
+            popoverTarget={searchPopoverId}
+            popoverTargetAction="toggle"
+            aria-controls={searchPopoverId}
           >
             <MagnifyingGlassIcon className="h-6 w-6" />
           </button>
           <button
             aria-label="Cart"
             className="p-2 cursor-pointer"
-            onClick={onToggleCart}
+            popoverTarget={cartPopoverId}
+            popoverTargetAction="toggle"
+            aria-controls={cartPopoverId}
           >
             <ShoppingBagIcon className="h-6 w-6" />
           </button>

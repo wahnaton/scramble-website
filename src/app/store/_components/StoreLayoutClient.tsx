@@ -1,36 +1,23 @@
-"use client";
-
-import { useState } from "react";
 import { SlideOverPanel } from "../components/ui/SlideOverPanel";
 import { StoreHeader } from "./StoreHeader";
 import { StoreFooter } from "./StoreFooter";
-import { PanelProvider } from "./PanelProvider";
+import { STORE_CART_PANEL_ID, STORE_SEARCH_PANEL_ID } from "../panel-ids";
 
 export default function StoreLayoutClient({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [openPanel, setOpenPanel] = useState<"search" | "cart" | null>(null);
-
   return (
-    <PanelProvider setOpenPanel={setOpenPanel}>
+    <>
       <StoreHeader
-        onToggleSearch={() => setOpenPanel("search")}
-        onToggleCart={() => setOpenPanel("cart")}
+        searchPopoverId={STORE_SEARCH_PANEL_ID}
+        cartPopoverId={STORE_CART_PANEL_ID}
       />
       <div className="min-h-screen bg-white text-white">{children}</div>
       <StoreFooter />
-      <SlideOverPanel
-        open={openPanel === "search"}
-        onClose={() => setOpenPanel(null)}
-        title="search"
-      />
-      <SlideOverPanel
-        open={openPanel === "cart"}
-        onClose={() => setOpenPanel(null)}
-        title="cart"
-      />
-    </PanelProvider>
+      <SlideOverPanel id={STORE_SEARCH_PANEL_ID} title="search" />
+      <SlideOverPanel id={STORE_CART_PANEL_ID} title="cart" />
+    </>
   );
 }
