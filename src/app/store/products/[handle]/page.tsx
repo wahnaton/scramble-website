@@ -17,9 +17,11 @@ export default async function ProductPage({ params }: PageProps) {
 
   if (!product) return notFound();
 
-  const img = product.thumbnail || product?.images?.[0]?.url || null;
-  const N = 5;
-  const gallery = img ? Array.from({ length: N }, () => img) : [];
+  const gallery =
+    product.images?.map((image) => image.url).filter(Boolean) ?? [];
+  const fallbackImg = product.thumbnail || null;
+  const imagesToShow =
+    gallery.length > 0 ? gallery : fallbackImg ? [fallbackImg] : [];
   const colors = getProductColorSwatches(product);
   const sizes = getProductSizes(product);
 
@@ -27,9 +29,9 @@ export default async function ProductPage({ params }: PageProps) {
     <main className="mx-auto max-w-8xl p-6 text-black">
       <div className="md:flex md:gap-8 md:px-4">
         <div className="md:w-1/2">
-          {gallery.length ? (
+          {imagesToShow.length ? (
             <div className="flex md:grid md:grid-cols-2 gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory">
-              {gallery.map((src, i) => (
+              {imagesToShow.map((src, i) => (
                 <div
                   key={i}
                   className="relative aspect-[0.75] w-1/2 shrink-0 snap-center md:w-auto rounded-lg overflow-hidden"
