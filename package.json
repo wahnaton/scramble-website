@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@medusajs/js-sdk": "^2.9.0",
-    "@medusajs/types": "^2.9.0",
+    "@medusajs/js-sdk": "^2.11.3",
+    "@medusajs/types": "^2.11.3",
     "next": "^15.5.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
