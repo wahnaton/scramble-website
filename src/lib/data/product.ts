@@ -3,6 +3,17 @@
 import { HttpTypes } from "@medusajs/types";
 import { sdk } from "../config";
 
+const productFieldSelection = [
+  "*variants",
+  "*variants.calculated_price",
+  "*variants.options",
+  "*variants.options.option",
+  "*variants.images",
+  "*images",
+  "+metadata",
+  "+tags",
+].join(",");
+
 export const listProducts = async ({
   pageParam = 1,
   queryParams,
@@ -26,8 +37,7 @@ export const listProducts = async ({
         query: {
           limit,
           offset,
-          fields:
-            "*variants.calculated_price,+variants.options,+variants.options.option,+metadata,+tags",
+          fields: productFieldSelection,
           ...queryParams,
         },
         cache: "force-cache",
@@ -59,10 +69,9 @@ export const retrieveProductByHandle = async (
         query: {
           handle,
           limit: 1,
-          // Ensure we retrieve metadata and variant option details
-          // so that utilities like getProductColorSwatches can work
-          fields:
-            "*variants.calculated_price,+variants.options,+variants.options.option,+metadata,+tags",
+          // Ensure we retrieve metadata, variant option details, and images
+          // so downstream utilities have full product context
+          fields: productFieldSelection,
           ...queryParams,
         },
         cache: "force-cache",

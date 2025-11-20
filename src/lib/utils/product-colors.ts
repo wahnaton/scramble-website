@@ -1,19 +1,25 @@
 import { HttpTypes } from "@medusajs/types";
 
-export function getProductColorSwatches(
+export function getProductColorSwatchMap(
   product: HttpTypes.StoreProduct,
-): string[] {
+): Map<string, string> {
   const swatchMap = (product.metadata?.color_swatches || {}) as Record<
     string,
     string
   >;
 
-  // Normalize swatch keys to lowercase for simple lookup
   const normalized = new Map<string, string>();
   for (const key of Object.keys(swatchMap)) {
     normalized.set(key.toLowerCase(), swatchMap[key]);
   }
 
+  return normalized;
+}
+
+export function getProductColorSwatches(
+  product: HttpTypes.StoreProduct,
+): string[] {
+  const swatchMap = getProductColorSwatchMap(product);
   // Collect distinct color option values from variants
   const values = new Set<string>();
   for (const variant of product.variants || []) {
@@ -28,7 +34,7 @@ export function getProductColorSwatches(
   // Map option values to hex codes via metadata.color_swatches
   const hexes: string[] = [];
   for (const name of values) {
-    const hex = normalized.get(name.toLowerCase());
+    const hex = swatchMap.get(name.toLowerCase());
     if (typeof hex === "string") hexes.push(hex);
   }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type SizeSelectorProps = {
   sizes: string[];
@@ -10,6 +10,12 @@ type SizeSelectorProps = {
 
 export function SizeSelector({ sizes, onChange, value }: SizeSelectorProps) {
   const [selected, setSelected] = useState<string | null>(value ?? null);
+
+  useEffect(() => {
+    if (value !== undefined && value !== selected) {
+      setSelected(value);
+    }
+  }, [value, selected]);
 
   const handleSelect = (size: string) => {
     setSelected(size);
