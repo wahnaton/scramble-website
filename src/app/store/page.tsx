@@ -1,5 +1,5 @@
 import { listProducts } from "@/src/lib/data/product";
-import ProductCard from "@/src/app/store/_components/ProductCard";
+import ProductCard from "@/src/app/store/components/ProductCard";
 
 export default async function StorePage() {
   const products = await listProducts({})

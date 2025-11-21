@@ -4,14 +4,14 @@ import type { JSX } from "react";
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { HttpTypes } from "@medusajs/types";
-import { ColorSelector } from "@/src/app/store/_components/ColorSelector";
-import { SizeSelector } from "@/src/app/store/_components/SizeSelector";
-import { AddToCartButton } from "@/src/app/store/_components/AddToCartButton";
+import { ColorSelector } from "@/src/app/store/components/ColorSelector";
+import { SizeSelector } from "@/src/app/store/components/SizeSelector";
+import { AddToCartButton } from "@/src/app/store/components/AddToCartButton";
 import {
   buildColorOptions,
   buildSizeOptions,
   extractVariantMetas,
-} from "@/src/app/store/_components/utils/variant-options";
+} from "@/src/app/store/components/utils/variant-options";
 
 type ProductVariantViewerProps = {
   product: HttpTypes.StoreProduct;
@@ -30,7 +30,9 @@ export function ProductVariantViewer({
   const [selectedColor, setSelectedColor] = useState<string | null>(
     colors[0]?.value || null,
   );
-  const [selectedSize, setSelectedSize] = useState<string | null>(sizes[0] || null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(
+    sizes[0] || null,
+  );
 
   // keep size valid when color changes
   useEffect(() => {
@@ -40,7 +42,8 @@ export function ProductVariantViewer({
     );
     if (!hasCombo) {
       const firstSizeForColor =
-        variants.find(({ meta }) => meta.color === selectedColor)?.meta.size ?? null;
+        variants.find(({ meta }) => meta.color === selectedColor)?.meta.size ??
+        null;
       setSelectedSize(firstSizeForColor);
     }
   }, [selectedColor, selectedSize, variants]);
@@ -49,7 +52,8 @@ export function ProductVariantViewer({
     if (!selectedColor || !selectedSize) return null;
     return (
       variants.find(
-        ({ meta }) => meta.color === selectedColor && meta.size === selectedSize,
+        ({ meta }) =>
+          meta.color === selectedColor && meta.size === selectedSize,
       ) || null
     );
   }, [selectedColor, selectedSize, variants]);

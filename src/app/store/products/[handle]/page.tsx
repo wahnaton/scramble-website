@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { retrieveProductByHandle } from "@/src/lib/data/product";
-import { ProductVariantViewer } from "@/src/app/store/_components/ProductVariantViewer";
+import { ProductVariantViewer } from "@/src/app/store/components/ProductVariantViewer";
 
 type PageProps = {
   params: Promise<{ handle: string }>;

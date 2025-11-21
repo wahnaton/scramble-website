@@ -1,4 +1,4 @@
-import { SlideOverPanel } from "../components/ui/SlideOverPanel";
+import { SlideOverPanel } from "./SlideOverPanel";
 import { StoreHeader } from "./StoreHeader";
 import { StoreFooter } from "./StoreFooter";
 import { STORE_CART_PANEL_ID, STORE_SEARCH_PANEL_ID } from "../panel-ids";

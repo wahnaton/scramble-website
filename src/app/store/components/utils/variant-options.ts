@@ -1,5 +1,6 @@
 import { HttpTypes } from "@medusajs/types";
 import { getProductColorSwatchMap } from "@/src/lib/utils/product-colors";
+import { getVariantImageUrls } from "@/src/app/store/components/utils/variant-image-urls";
 
 export type VariantMeta = {
   color: string | null;
@@ -27,10 +28,7 @@ export const extractVariantMetas = (
   return (product.variants || []).map((variant) => {
     const color = getOptionValue(variant, "color");
     const size = getOptionValue(variant, "size");
-    const images =
-      (variant as HttpTypes.StoreProductVariant & { images?: { url?: string }[] })
-        .images?.map((img) => img?.url)
-        .filter((url): url is string => Boolean(url)) ?? [];
+    const images = getVariantImageUrls(variant);
 
     return {
       variant,
@@ -38,7 +36,9 @@ export const extractVariantMetas = (
         color,
         size,
         images: Array.from(new Set(images)),
-        title: variant.title || `${product.title} ${color || ""} ${size || ""}`.trim(),
+        title:
+          variant.title ||
+          `${product.title} ${color || ""} ${size || ""}`.trim(),
       },
     };
   });
@@ -60,7 +60,10 @@ export const buildColorOptions = (
     }
   }
 
-  return Array.from(map.entries()).map(([value, swatch]) => ({ value, swatch }));
+  return Array.from(map.entries()).map(([value, swatch]) => ({
+    value,
+    swatch,
+  }));
 };
 
 export const buildSizeOptions = (

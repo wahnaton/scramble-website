@@ -2,9 +2,9 @@ import type { JSX } from "react";
 import Image from "next/image";
 import { HttpTypes } from "@medusajs/types";
 import {
-  collectVariantColorPreviews,
-  VariantColorPreview,
-} from "@/src/app/store/_components/utils/variant-images";
+  collectVariantImagesByColor,
+  VariantImagesByColor,
+} from "@/src/app/store/components/utils/variant-images-by-color";
 
 type VariantImageGalleryProps = {
   products: HttpTypes.StoreProduct[];
@@ -15,7 +15,7 @@ const VariantPreviewCard = ({
   preview,
 }: {
   productTitle: string;
-  preview: VariantColorPreview;
+  preview: VariantImagesByColor;
 }): JSX.Element => (
   <div className="rounded-lg border border-gray-100 p-3">
     <div className="flex items-center gap-2 text-sm font-medium text-gray-900">
@@ -28,7 +28,9 @@ const VariantPreviewCard = ({
       ) : null}
       <span className="truncate">{preview.label}</span>
     </div>
-    <p className="text-xs text-gray-600">Variant name: {preview.variantTitle}</p>
+    <p className="text-xs text-gray-600">
+      Variant name: {preview.variantTitle}
+    </p>
 
     {preview.images.length ? (
       <div className="mt-2 space-y-2">
@@ -73,7 +75,7 @@ export function VariantImageGallery({
 
       <div className="mt-6 space-y-6">
         {products.map((product) => {
-          const variants = collectVariantColorPreviews(product);
+          const variants = collectVariantImagesByColor(product);
 
           return (
             <div

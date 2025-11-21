@@ -1,4 +1,4 @@
-import StoreLayoutClient from "./_components/StoreLayoutClient";
+import StoreLayoutClient from "./components/StoreLayoutClient";
 
 export default function StoreLayout({
   children,

@@ -1,10 +1,9 @@
 import { HttpTypes } from "@medusajs/types";
-import {
-  getOptionValue,
-} from "@/src/app/store/_components/utils/variant-options";
+import { getOptionValue } from "@/src/app/store/components/utils/variant-options";
+import { getVariantImageUrls } from "@/src/app/store/components/utils/variant-image-urls";
 import { getProductColorSwatchMap } from "@/src/lib/utils/product-colors";
 
-export type VariantColorPreview = {
+export type VariantImagesByColor = {
   key: string;
   label: string;
   images: string[];
@@ -12,23 +11,11 @@ export type VariantColorPreview = {
   variantTitle: string;
 };
 
-const getVariantImageUrls = (variant: HttpTypes.StoreProductVariant): string[] => {
-  const looseVariant = variant as HttpTypes.StoreProductVariant & {
-    images?: { url?: string | null }[] | null;
-  };
-
-  return (
-    looseVariant.images
-      ?.map((img) => img?.url)
-      .filter((url): url is string => Boolean(url)) ?? []
-  );
-};
-
-export const collectVariantColorPreviews = (
+export const collectVariantImagesByColor = (
   product: HttpTypes.StoreProduct,
-): VariantColorPreview[] => {
+): VariantImagesByColor[] => {
   const swatches = getProductColorSwatchMap(product);
-  const previews = new Map<string, VariantColorPreview>();
+  const previews = new Map<string, VariantImagesByColor>();
 
   (product.variants || []).forEach((variant, idx) => {
     if (!variant) return;

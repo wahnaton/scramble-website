@@ -69,8 +69,6 @@ export const retrieveProductByHandle = async (
         query: {
           handle,
           limit: 1,
-          // Ensure we retrieve metadata, variant option details, and images
-          // so downstream utilities have full product context
           fields: productFieldSelection,
           ...queryParams,
         },

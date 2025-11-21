@@ -1,18 +1,15 @@
 import { HttpTypes } from "@medusajs/types";
 import { getProductColorSwatchMap } from "@/src/lib/utils/product-colors";
-
-type VariantWithImages = HttpTypes.StoreProductVariant & {
-  images?: { url?: string | null }[] | null;
-};
+import { getVariantImageUrls } from "@/src/app/store/components/utils/variant-image-urls";
 
 // Returns a map keyed by swatch hex -> first image URL for that color
-export const mapVariantImageByColor = (
+export const mapFirstImageByColor = (
   product: HttpTypes.StoreProduct,
 ): Map<string, string> => {
   const swatchMap = getProductColorSwatchMap(product);
   const map = new Map<string, string>();
 
-  (product.variants as VariantWithImages[] | undefined)?.forEach((variant) => {
+  (product.variants || []).forEach((variant) => {
     if (!variant) return;
 
     const colorOpt = (variant.options || []).find(
@@ -24,10 +21,7 @@ export const mapVariantImageByColor = (
     const hex = swatchMap.get(colorValue.toLowerCase());
     if (!hex || map.has(hex)) return;
 
-    const url =
-      variant.images
-        ?.map((img) => img?.url)
-        .find((url): url is string => Boolean(url)) || null;
+    const url = getVariantImageUrls(variant)[0] ?? null;
 
     if (!url) return;
     map.set(hex, url);
